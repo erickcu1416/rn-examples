@@ -6,6 +6,7 @@ export const styles = StyleSheet.create({
         backgroundColor: 'transparent' 
     },
     containerForm: {
+        flex: 5,
         marginTop: 48,
         backgroundColor: 'transparent' 
     },

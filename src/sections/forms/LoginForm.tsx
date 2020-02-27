@@ -40,33 +40,36 @@ export const LoginForm = (props: Props) => {
     };
 
     return (
-        <Layout style={styles.container}>
-            <Input
-                status='control'
-                style={styles.inputBox}
-                label='EMAIL'
-                labelStyle={styles.labelInput}
-                textStyle={styles.txtInput}
-                placeholder='Email'
-                placeholderTextColor='white'
-                value={email}
-                onChangeText={setEmail}
-                />
+        <View>
+            <Layout style={styles.container}>
+                <Input
+                    status='control'
+                    style={styles.inputBox}
+                    label='EMAIL'
+                    labelStyle={styles.labelInput}
+                    textStyle={styles.txtInput}
+                    placeholder='Email'
+                    placeholderTextColor='white'
+                    value={email}
+                    onChangeText={setEmail}
+                    />
 
-            <Input
-                status='control'
-                style={styles.inputBox}
-                label='PASSWORD'
-                labelStyle={styles.labelInput}
-                textStyle={styles.txtInput}
-                value={password}
-                placeholder='********'
-                placeholderTextColor='white'
-                icon={renderIcon}
-                secureTextEntry={secureTextEntry}
-                onIconPress={onIconPress}
-                onChangeText={setPassword}
-                />
+                <Input
+                    status='control'
+                    style={styles.inputBox}
+                    label='PASSWORD'
+                    labelStyle={styles.labelInput}
+                    textStyle={styles.txtInput}
+                    value={password}
+                    placeholder='********'
+                    placeholderTextColor='white'
+                    icon={renderIcon}
+                    secureTextEntry={secureTextEntry}
+                    onIconPress={onIconPress}
+                    onChangeText={setPassword}
+                    />
+
+            </Layout>
 
             <View style={styles.containerBtn}>
                 <Button
@@ -76,14 +79,15 @@ export const LoginForm = (props: Props) => {
                     appearance='ghost' 
                     status='primary'>LOGIN</Button>
             </View>
-
-        </Layout>
+        </View>
+        
+       
     );
 };
 
 
 const styles = StyleSheet.create({
-    container: { 
+    container: {
         justifyContent: 'center', 
         alignItems: 'center',
         backgroundColor: 'transparent',
@@ -114,13 +118,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         padding: 8,
-        marginTop: 280,
     },
     button: {
         margin: 8,
         height: 52,
         width: 350,
-        marginVertical: 20,
+        marginVertical: 120,
         backgroundColor: 'white',
     },
 });
