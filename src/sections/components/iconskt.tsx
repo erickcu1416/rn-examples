@@ -12,3 +12,15 @@ export const GoogleIcon = (style) => (
 export const TwitterIcon = (style) => (
   <Icon name='twitter' {...style} />
 );
+
+export const BackIcon = (style) => (
+  <Icon {...style} name='arrow-back' />
+);
+
+export const EditIcon = (style) => (
+  <Icon {...style} name='edit'/>
+);
+
+export const MenuIcon = (style) => (
+  <Icon {...style} name='more-vertical'/>
+);

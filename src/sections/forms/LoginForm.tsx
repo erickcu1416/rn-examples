@@ -11,13 +11,8 @@ interface Props {
 
 export const LoginForm = (props: Props) => {
 
-    let mv = 120;
     React.useEffect(() => {
-        const h = Dimensions.get('screen').height;
-        console.log('Dimensions', h);
-        if (h > 640) {
-            
-        }
+        
     })
 
     const [email, setEmail] = React.useState('');
@@ -28,6 +23,15 @@ export const LoginForm = (props: Props) => {
     const onIconPress = () => {
         setSecureTextEntry(!secureTextEntry);
     };
+
+    const getMt = () => {
+        let mv = 120;
+        const h = Dimensions.get('screen').height;
+        if (h > 700) {
+            mv = 350;
+        }
+        return mv;
+    }
     
     const renderIcon = (style) => (
         <Icon {...style} name={secureTextEntry ? 'eye-off' : 'eye'}/>
@@ -84,7 +88,7 @@ export const LoginForm = (props: Props) => {
                 <Button
                     onPress={onPress}
                     textStyle={styles.labelBtn} 
-                    style={[styles.button, { marginVertical: mv }]} 
+                    style={[styles.button, { marginVertical: getMt() }]} 
                     appearance='ghost' 
                     status='primary'>LOGIN</Button>
             </View>

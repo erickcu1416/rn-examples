@@ -1,13 +1,13 @@
 import React from 'react';
 import { CompositeNavigationProp, NavigationHelpers, ParamListBase } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { SafeAreaView, StatusBar, StyleSheet, TouchableOpacity, ImageBackground, View } from 'react-native';
+import { SafeAreaView, StatusBar, TouchableOpacity, ImageBackground, View } from 'react-native';
 import { LoginForm } from '../../sections/forms/LoginForm';
 import { Text, Button, Icon } from '@ui-kitten/components';
 import { FacebookIcon, GoogleIcon, TwitterIcon } from '../../sections/components/iconskt';
 import { styles } from '../styles/auth.style';
-import colors from '../../../assets/styles/colors';
 import Storage from '../../classes/storage';
+import { LOGGED_STATUS } from '../../../common/constants/status';
 
 
 interface Props {
@@ -42,7 +42,7 @@ export default class LoginScreen extends React.Component<Props, State> {
 
   loginHadler = async user => {
     console.log('Naveganod a home');
-    await Storage.setItemSotrage('loggedInStatus', true);
+    await Storage.saveLoggedStatus(LOGGED_STATUS.LOGGED_IN.toString());
     this.navigateHome();
   }
 

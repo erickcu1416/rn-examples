@@ -6,14 +6,13 @@ export const styles = StyleSheet.create({
         backgroundColor: 'transparent' 
     },
     containerForm: {
-        flex: 5,
+        flex: 3,
         marginTop: 48,
         backgroundColor: 'transparent' 
     },
     footer: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 10,
     },
     footerIcons: {
         flexDirection: 'row',

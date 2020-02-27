@@ -10,10 +10,10 @@ const Stack = createStackNavigator();
 
 const HomeNavigator = () => (
     <Stack.Navigator headerMode='none'>
-      <Stack.Screen name='Splash' component={SplashScreen}/>
-      <Stack.Screen name='Login' component={LoginScreen}/>
-      <Stack.Screen name='Register' component={RegisterScreen}/>
-      <Stack.Screen name='Home' component={HomeScreen}/>
+        <Stack.Screen name='Splash' component={SplashScreen}/>
+        <Stack.Screen name='Login' component={LoginScreen}/>
+        <Stack.Screen name='Register' component={RegisterScreen}/>
+        <Stack.Screen name='Home' component={HomeScreen}/>
     </Stack.Navigator>
 );
 
