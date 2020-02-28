@@ -4,24 +4,24 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { SafeAreaView, StatusBar, TouchableOpacity, ImageBackground, View } from 'react-native';
 import { LoginForm } from '../../sections/forms/LoginForm';
 import { Text, Button, Icon } from '@ui-kitten/components';
-import { FacebookIcon, GoogleIcon, TwitterIcon } from '../../sections/components/iconskt';
+import { FacebookIcon, GoogleIcon, TwitterIcon } from '../../sections/components/icons/iconskt';
 import { styles } from '../styles/auth.style';
 import Storage from '../../classes/storageManager';
 import { LOGGED_STATUS } from '../../../common/constants/status';
-
-
-interface Props {
-  navigation: CompositeNavigationProp<StackNavigationProp<ParamListBase, 'params'>, NavigationHelpers<ParamListBase>>;
-}
+import { Loader } from '../../sections/components/ui/loader';
+import { Props } from '../../../common/classes/props.interface';
 
 interface State {
-  isLoggedIn: boolean;
-  loggedInStatus: string;
+  loader: boolean;
 };
 
 export default class LoginScreen extends React.Component<Props, State> {
 
   static defaultProps = {}
+
+  state: State = {
+    loader: false
+  };
 
   componentDidMount() {
     this.props.navigation.setOptions({
@@ -38,7 +38,9 @@ export default class LoginScreen extends React.Component<Props, State> {
   };
 
   loginHadler = async user => {
+    this.setState({ loader: true });
     await Storage.saveLoggedStatus(LOGGED_STATUS.LOGGED_IN.toString());
+    this.setState({ loader: false });
     this.navigateHome();
   }
 
@@ -68,6 +70,7 @@ export default class LoginScreen extends React.Component<Props, State> {
             </View>
           </View>
         </SafeAreaView>
+        { this.state.loader ? <Loader/> : null  }
       </ImageBackground>
     );
   }

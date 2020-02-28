@@ -1,7 +1,7 @@
 import React from 'react';
 import { Header } from '../../sections/components/header';
 import { Props } from '../../../common/classes/props.interface';
-import { FacebookAction, LookAction } from '../../sections/components/actions-icon';
+import { FacebookAction, LookAction } from '../../sections/components/icons/actions-icon';
 import StorageManager from '../../classes/storageManager';
 import { LOGGED_STATUS } from '../../../common/constants/status';
   
