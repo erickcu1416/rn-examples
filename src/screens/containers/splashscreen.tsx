@@ -1,7 +1,7 @@
 import React from 'react';
 import LogIn from './login';
 import Home from './home';
-import { AsyncStorage, Text } from 'react-native';
+import { View, Image, StyleSheet, Text, Animated } from 'react-native';
 import { CompositeNavigationProp, NavigationHelpers, ParamListBase } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import Storage from '../../classes/storageManager';
@@ -14,8 +14,10 @@ interface Props {
 interface State {
     isLoggedIn: boolean;
     loggedInStatus: string;
+    LogoAnime: any;
+    LogoText: any;
+    loadingSpinner: boolean;
 };
-
 
 export default class SplashScreen extends React.Component<Props, State> {
 
@@ -23,11 +25,30 @@ export default class SplashScreen extends React.Component<Props, State> {
 
     state: State = {
         isLoggedIn: false,
-        loggedInStatus: ''
+        loggedInStatus: '',
+        LogoAnime: new Animated.Value(0),
+        LogoText: new Animated.Value(0),
+        loadingSpinner: false,
     };
 
     async componentDidMount() {
-        await this.validateRender();
+        this.validateRender();
+        const {LogoAnime, LogoText} = this.state;
+        Animated.parallel([
+        Animated.spring(LogoAnime, {
+            toValue: 1,
+            tension: 10,
+            friction: 2,
+        }),
+        Animated.timing(LogoText, {
+            toValue: 1,
+            duration: 1800,
+        }),
+        ]).start(() => {
+            this.setState({
+                loadingSpinner: true,
+            });
+        });
     }
 
     async validateRender() {
@@ -37,7 +58,7 @@ export default class SplashScreen extends React.Component<Props, State> {
             } else {
                 this.setState({ loggedInStatus: item.toString() });
             }
-        }, 3000);
+        }, 8000);
     }
 
     render() {
@@ -47,6 +68,35 @@ export default class SplashScreen extends React.Component<Props, State> {
         else if(this.state.loggedInStatus === LOGGED_STATUS.LOGGED_OUT)  {
             return <LogIn navigation={this.props.navigation}/>
         }
-        return <Text>Cargando..</Text>
+        return  <View style={styles.container}>
+                    <Animated.View style={{
+                        opacity: this.state.LogoAnime,
+                        top: this.state.LogoAnime.interpolate({
+                            inputRange: [0, 1],
+                            outputRange: [80, 0],
+                        }),
+                    }}>
+                        <Image source={require('../../../assets/icons/Logo.png')}/>
+                    </Animated.View>
+                    <Animated.View style={{opacity: this.state.LogoText}}>
+                        <Text style={styles.logoText}> Taskses </Text>
+                    </Animated.View>
+                </View>
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#CB6333',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    logoText: {
+        color: '#FFFFFF',
+        fontFamily: 'GoogleSans-Bold',
+        fontSize: 30,
+        marginTop: 29.1,
+        fontWeight: '300',
+    },
+});

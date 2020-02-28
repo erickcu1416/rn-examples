@@ -1,9 +1,18 @@
 {
   "expo": {
-    "name": "Blank Template (TypeScript)",
+    "name": "Taskes",
     "slug": "pruebas",
     "privacy": "public",
     "sdkVersion": "36.0.0",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.erickchan.taskes",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.erickchan.taskes",
+      "versionCode": 1
+    },
     "platforms": [
       "ios",
       "android",
@@ -22,9 +31,6 @@
     },
     "assetBundlePatterns": [
       "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    }
+    ]
   }
 }
