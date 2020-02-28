@@ -8,7 +8,6 @@ export const Header = (props: PropsHeader) => {
 
     useEffect(() => {
         return () => {
-            console.log('Hola mundo en header');
         };
     })
 

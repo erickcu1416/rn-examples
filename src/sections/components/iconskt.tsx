@@ -24,3 +24,7 @@ export const EditIcon = (style) => (
 export const MenuIcon = (style) => (
   <Icon {...style} name='more-vertical'/>
 );
+
+export const LookIcon = (style) => (
+  <Icon {...style} name='lock'/>
+);

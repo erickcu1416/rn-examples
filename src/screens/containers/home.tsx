@@ -1,7 +1,9 @@
 import React from 'react';
 import { Header } from '../../sections/components/header';
 import { Props } from '../../../common/classes/props.interface';
-import { FacebookAction } from '../../sections/components/actions-icon';
+import { FacebookAction, LookAction } from '../../sections/components/actions-icon';
+import StorageManager from '../../classes/storageManager';
+import { LOGGED_STATUS } from '../../../common/constants/status';
   
 interface State {
     isLoggedIn: boolean;
@@ -10,19 +12,27 @@ interface State {
 
 export default class HomeScreen extends React.Component<Props, State> {
 
-    static defaultProps = { navigation:{} }
-
     navigateBack = () => {
         this.props.navigation.goBack();
+    };
+
+    navigateSplashScreen = () => {
+        this.props.navigation.navigate('Splash');
     };
 
     loger = () => {
         console.log('Vengo desde una acción');
     }
 
+    closeSession = async () => {
+        await StorageManager.updatedLoggedStatus(LOGGED_STATUS.LOGGED_OUT.toString());
+        this.navigateSplashScreen();
+    }
+
     setActions(): JSX.Element[] {
         const actions: JSX.Element[] = [
-            <FacebookAction onPress={this.loger}/>
+            <FacebookAction onPress={this.loger}/>,
+            <LookAction onPress={this.closeSession}/>
         ];
         return actions;
     }

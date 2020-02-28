@@ -2,7 +2,7 @@ import { CompositeNavigationProp, NavigationHelpers, ParamListBase } from '@reac
 import { StackNavigationProp } from '@react-navigation/stack';
 
 export interface Props {
-    navigation: CompositeNavigationProp<StackNavigationProp<ParamListBase, 'params'>, NavigationHelpers<ParamListBase>>;
+    navigation?: CompositeNavigationProp<StackNavigationProp<ParamListBase, 'params'>, NavigationHelpers<ParamListBase>>;
 };
 
 export interface PropsHeader {

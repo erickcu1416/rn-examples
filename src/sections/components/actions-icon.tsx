@@ -1,6 +1,6 @@
 import React from 'react';
 import { TopNavigationAction } from '@ui-kitten/components';
-import { BackIcon, EditIcon, MenuIcon, FacebookIcon } from './iconskt';
+import { BackIcon, EditIcon, MenuIcon, FacebookIcon, LookIcon } from './iconskt';
 
 export const BackAction = (props) => (
     <TopNavigationAction {...props} icon={BackIcon}/>
@@ -16,6 +16,10 @@ export const MenuAction = (props) => (
 
 export const FacebookAction = (props) => (
     <TopNavigationAction {...props} icon={FacebookIcon}/>
+);
+
+export const LookAction = (props) => (
+    <TopNavigationAction {...props} icon={LookIcon}/>
 );
 
 
