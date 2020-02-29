@@ -4,9 +4,10 @@ import { Props } from '../../../domain/interfaces/props/props.interface';
 import { FacebookAction, LookAction } from '../../sections/components/icons/actions-icon';
 import StorageManager from '../../../services/classes/storageManager';
 import { LOGGED_STATUS } from '../../../domain/constants/status';
-import { BackHandler } from 'react-native';
+import { BackHandler, View } from 'react-native';
 import Messages from '../../../domain/helpers/messages';
 import HomeMessages from '../../../common/messages/homeMessages';
+import { DocumentPickerForm } from '../../sections/forms/DocumentForm';
   
 interface State {
     isLoggedIn: boolean;
@@ -68,7 +69,10 @@ export default class HomeScreen extends React.Component<Props, State> {
     render()
     {
         return (
-            <Header title="Inicio" actions={this.setActions()} noBackButton={true}/>
+            <View>
+                <Header title="Inicio" actions={this.setActions()} noBackButton={true}/>
+                <DocumentPickerForm/>
+            </View>
         );
     }
 }
