@@ -6,10 +6,10 @@ import { LoginForm } from '../../sections/forms/LoginForm';
 import { Text, Button, Icon } from '@ui-kitten/components';
 import { FacebookIcon, GoogleIcon, TwitterIcon } from '../../sections/components/icons/iconskt';
 import { styles } from '../styles/auth.style';
-import Storage from '../../classes/storageManager';
-import { LOGGED_STATUS } from '../../../common/constants/status';
+import Storage from '../../../services/classes/storageManager';
+import { LOGGED_STATUS } from '../../../domain/constants/status';
 import { Loader } from '../../sections/components/ui/loader';
-import { Props } from '../../../common/classes/props.interface';
+import { Props } from '../../../domain/interfaces/props/props.interface';
 
 interface State {
   loader: boolean;
@@ -30,11 +30,11 @@ export default class LoginScreen extends React.Component<Props, State> {
   }
 
   navigateHome = () => {
-    this.props.navigation.navigate('Home');
+    this.props.navigation.replace('Home', {});
   };
 
   navigateRegister = () => {
-    this.props.navigation.navigate('Register');
+    this.props.navigation.replace('Register', {});
   };
 
   loginHadler = async user => {

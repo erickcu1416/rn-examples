@@ -4,8 +4,8 @@ import Home from './home';
 import { View, Image, StyleSheet, Text, Animated } from 'react-native';
 import { CompositeNavigationProp, NavigationHelpers, ParamListBase } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import Storage from '../../classes/storageManager';
-import { LOGGED_STATUS } from '../../../common/constants/status';
+import Storage from '../../../services/classes/storageManager';
+import { LOGGED_STATUS } from '../../../domain/constants/status';
 
 interface Props {
     navigation: CompositeNavigationProp<StackNavigationProp<ParamListBase, 'params'>, NavigationHelpers<ParamListBase>>;
@@ -63,7 +63,7 @@ export default class SplashScreen extends React.Component<Props, State> {
 
     render() {
         if (this.state.loggedInStatus === LOGGED_STATUS.LOGGED_IN) {
-            return <Home/>
+            return <Home navigation={this.props.navigation}/>
         }
         else if(this.state.loggedInStatus === LOGGED_STATUS.LOGGED_OUT)  {
             return <LogIn navigation={this.props.navigation}/>

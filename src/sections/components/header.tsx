@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Divider, TopNavigation } from '@ui-kitten/components';
 import { View, StatusBar, StyleSheet, SafeAreaView } from 'react-native';
-import { PropsHeader } from '../../../common/classes/props.interface';
+import { PropsHeader } from '../../../domain/interfaces/props/props.interface';
 import { BackAction } from './icons/actions-icon';
 
 export const Header = (props: PropsHeader) => {

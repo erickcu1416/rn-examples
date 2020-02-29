@@ -1,9 +1,9 @@
 import React from 'react';
 import { Input, Icon, Layout, Button } from '@ui-kitten/components';
 import { StyleSheet, View, Dimensions } from 'react-native';
-import colors from '../../../assets/styles/colors';
-import { IUser } from '../../../common/models/user.interface';
-import Messages from '../../../common/classes/messages';
+import { IUser } from '../../../domain/interfaces/user.interface';
+import Messages from '../../../domain/helpers/messages';
+import FormMessages from '../../../common/messages/formMessage';
 
 interface Props {
     login(user: IUser): any,
@@ -41,7 +41,7 @@ export const LoginForm = (props: Props) => {
         console.log('Holaaa');
         
         if (!email || !password) {
-            return await Messages.presentAlertOk('', 'Necesitas llenar todos los campos');
+            return await Messages.presentAlertOk('', FormMessages.formEmpity.toString());
         }
 
         const user: IUser = {
@@ -93,8 +93,6 @@ export const LoginForm = (props: Props) => {
                     status='primary'>LOGIN</Button>
             </View>
         </View>
-        
-       
     );
 };
 

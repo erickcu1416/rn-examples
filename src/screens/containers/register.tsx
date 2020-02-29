@@ -24,7 +24,7 @@ export default class RegisterScreen extends React.Component<Props, State> {
   }
 
   navigateLogin = () => {
-    this.props.navigation.navigate('Login');
+    this.props.navigation.replace('Login', {});
   };
 
   loginHadler = user => {

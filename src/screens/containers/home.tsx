@@ -1,9 +1,12 @@
 import React from 'react';
 import { Header } from '../../sections/components/header';
-import { Props } from '../../../common/classes/props.interface';
+import { Props } from '../../../domain/interfaces/props/props.interface';
 import { FacebookAction, LookAction } from '../../sections/components/icons/actions-icon';
-import StorageManager from '../../classes/storageManager';
-import { LOGGED_STATUS } from '../../../common/constants/status';
+import StorageManager from '../../../services/classes/storageManager';
+import { LOGGED_STATUS } from '../../../domain/constants/status';
+import { BackHandler } from 'react-native';
+import Messages from '../../../domain/helpers/messages';
+import HomeMessages from '../../../common/messages/homeMessages';
   
 interface State {
     isLoggedIn: boolean;
@@ -12,12 +15,37 @@ interface State {
 
 export default class HomeScreen extends React.Component<Props, State> {
 
+    backHandler: any;
+
+    componentDidMount() {
+        this.backHandler = BackHandler.addEventListener('hardwareBackPress', this.handleBackPress)
+    }
+
+    componentWillUnmount() {
+        console.log('Saliendo jeje'); 
+        this.backHandler.remove();
+    }
+
+    handleBackPress = async () => {
+        console.log('Propuedades', this.props.navigation);
+        if (this.props.navigation.canGoBack()) {
+            const res = await Messages.presentAlertOk('', HomeMessages.closeSession.toString());
+            if (res) {
+                this.closeSession();
+                return true;
+            }
+        } else {
+            BackHandler.exitApp();
+            return true;
+        }
+    }
+
     navigateBack = () => {
         this.props.navigation.goBack();
     };
 
-    navigateSplashScreen = () => {
-        this.props.navigation.navigate('Splash');
+    navigateToLogin = () => {        
+        this.props.navigation.replace('Login', {});
     };
 
     loger = () => {
@@ -25,13 +53,13 @@ export default class HomeScreen extends React.Component<Props, State> {
     }
 
     closeSession = async () => {
+        console.log('Propuedades', this.props.navigation.canGoBack());
         await StorageManager.updatedLoggedStatus(LOGGED_STATUS.LOGGED_OUT.toString());
-        this.navigateSplashScreen();
+        this.navigateToLogin();
     }
 
     setActions(): JSX.Element[] {
         const actions: JSX.Element[] = [
-            <FacebookAction onPress={this.loger}/>,
             <LookAction onPress={this.closeSession}/>
         ];
         return actions;
